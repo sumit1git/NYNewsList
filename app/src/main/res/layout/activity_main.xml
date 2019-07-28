@@ -6,47 +6,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
   >
-
+ <androidx.cardview.widget.CardView
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:elevation="15dp"
+     android:layout_marginStart="5dp"
+     android:layout_marginEnd="5dp">
 <LinearLayout
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
  <androidx.appcompat.widget.Toolbar
      android:id="@+id/toolbar"
      android:layout_width="match_parent"
      android:layout_height="?attr/actionBarSize"
-     android:background="#ff6d7fe2"
+     android:background="@color/colorPrimary"
      app:contentInsetEnd="0dp"
      app:contentInsetLeft="0dp"
      app:contentInsetRight="0dp"
      app:contentInsetStart="0dp"
      />
- <androidx.constraintlayout.widget.ConstraintLayout
+
+ <FrameLayout
+     android:id="@+id/container_fragment"
      android:layout_width="match_parent"
-     android:layout_height="match_parent"
-     >
-  <ProgressBar
-      android:id="@+id/progress_bar"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:visibility="visible"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintStart_toStartOf="parent"/>
-  <androidx.recyclerview.widget.RecyclerView
-      android:id="@+id/recyclerview"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:layout_marginStart="5dp"
-      android:layout_marginEnd="5dp"
-      />
-
-
- </androidx.constraintlayout.widget.ConstraintLayout>
+     android:layout_height="match_parent"/>
 </LinearLayout>
-
+ </androidx.cardview.widget.CardView>
  <com.google.android.material.navigation.NavigationView
      android:id="@+id/nav_view"
      android:layout_width="wrap_content"

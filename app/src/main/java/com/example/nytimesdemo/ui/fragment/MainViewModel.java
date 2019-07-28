@@ -1,4 +1,4 @@
-package com.example.nytimesdemo.ui;
+package com.example.nytimesdemo.ui.fragment;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -18,26 +18,24 @@ public class MainViewModel extends ViewModel {
 
     private String TAG = MainViewModel.class.getSimpleName();
     private NetworkService networkService;
-    protected MutableLiveData<List<NewsData>> popularNewsList;
+    public MutableLiveData<List<NewsData>> popularNewsList;
       protected  List<NewsData> newsModelData;
     public MainViewModel() {
         super();
-        //  popularNewsList = new MutableLiveData<>();
+        popularNewsList = new MutableLiveData<>();
+        newsModelData = new ArrayList<>();
     }
 
-    protected void setNetworkService(NetworkService networkService) {
+    public void setNetworkService(NetworkService networkService) {
         this.networkService = networkService;
     }
 
     @Override
     protected void onCleared() {
         super.onCleared();
-       // popularNewsList.d
     }
 
-    protected void callPopularNewsList() {
-        popularNewsList = new MutableLiveData<>();
-        newsModelData = new ArrayList<>();
+    public void callPopularNewsList() {
 
         networkService.getPopularNewsList().enqueue(new Callback<PopularNewsResponseModel>() {
             @Override

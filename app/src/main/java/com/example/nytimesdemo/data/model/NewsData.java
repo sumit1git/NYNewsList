@@ -1,6 +1,9 @@
 package com.example.nytimesdemo.data.model;
 
-public class NewsData {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class NewsData implements Parcelable {
     public NewsData(String title, String subHeading, String publishedDate,String imgUrl) {
         this.title = title;
         this.subHeading = subHeading;
@@ -43,5 +46,15 @@ public class NewsData {
 
     public void setPublishedDate(String publishedDate) {
         this.publishedDate = publishedDate;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+
     }
 }

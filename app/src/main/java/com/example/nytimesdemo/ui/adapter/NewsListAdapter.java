@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nytimesdemo.R;
 import com.example.nytimesdemo.data.model.NewsData;
+import com.example.nytimesdemo.ui.listener.OnRecyclerItemClickListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -19,9 +20,11 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.MyView
 
     private List<NewsData> newsList;
    private Context context;
-    public NewsListAdapter(Context context, List<NewsData> newsList) {
+   private OnRecyclerItemClickListener<NewsData> itemClickListener;
+    public NewsListAdapter(Context context, List<NewsData> newsList, OnRecyclerItemClickListener<NewsData> onItemClickListener) {
         this.newsList = newsList;
         this.context=context;
+        this.itemClickListener=onItemClickListener;
     }
 
     @Override
@@ -51,19 +54,23 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.MyView
 
         public MyViewHolder(View view) {
             super(view);
-            title = (TextView) view.findViewById(R.id.text_title);
-            subHeading = (TextView) view.findViewById(R.id.text_subheading);
-            publishedDate = (TextView) view.findViewById(R.id.text_date);
-            icon =(ImageView)view.findViewById(R.id.img_icon);
+            title = view.findViewById(R.id.text_title);
+            subHeading =  view.findViewById(R.id.text_subheading);
+            publishedDate =  view.findViewById(R.id.text_date);
+            icon =view.findViewById(R.id.img_icon);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (itemClickListener != null) {
+                        itemClickListener.onItemClick(newsList.get(getAdapterPosition()), getAdapterPosition());
+                    }
+                }
+            });
         }
     }
 
     public void updateReceiptsList(List<NewsData> newsList) {
         this.newsList = newsList;
-//        if(this.newsList!=null) {
-//            this.newsList.clear();
-//        }
-//         this.newsList.addAll(newsList);
         this.notifyDataSetChanged();
     }
 }
